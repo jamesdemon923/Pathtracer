@@ -16,7 +16,9 @@
 
 ## Build the BVH
 
-<center class="half"> <img src="image\principle\BVH1.png" width="300"/><img src="image\principle\BVH2.png" width="350"/></center>
+<div align=center>
+    <img src="image\principle\BVH1.png" width="300"/><img src="image\principle\BVH2.png" width="350"/>
+</div>
 
 Pseudocode:
 
@@ -66,10 +68,8 @@ End For
 
 
 $$
-{\displaystyle L_{\text{r}}(\mathbf {x} ,\omega _{\text{o}},\lambda ,t)=\int _{\Omega }f_{\text{r}}(\mathbf {x} ,\omega _{\text{i}},\omega _{\text{o}},\lambda ,t)L_{\text{i}}(\mathbf {x} ,\omega _{\text{i}},\lambda ,t)(\omega _{\text{i}}\cdot \mathbf {n} )\operatorname {d} \omega _{\text{i}}}
+{\displaystyle L_{\text{r}}(\mathbf {x} ,\omega _{\text{o}},\lambda ,t)=\int _{\Omega }f_{\text{r}}(\mathbf {x} ,\omega _{\text{i}},\omega _{\text{o}},\lambda ,t)L_{\text{i}}(\mathbf {x} ,\omega _{\text{i}},\lambda,t)(\omega _{\text{i}}\cdot \mathbf {n} )\operatorname {d} \omega _{\text{i}}}
 $$
-
-
 
 **Monte Carlo integration**:
 
@@ -336,13 +336,13 @@ non acceleration & acceleration:
     </tr>
 
 
-Using microfacet:
+Using microfacet (SPP=64):
 
 <table>
     <tr>
-        <td ><center><img src="image/result/spp64_rough0.jpg" >SPP = 64, roughness = 0 </center></td>
-        <td ><center><img src="image/result/spp64_rough0.25.jpg"  >SPP = 64, roughness = 0.25</center></td>
-        <td ><center><img src="image/result/spp64_rough0.5.jpg"  >SPP = 64, roughness = 0.5</center></td>
-        <td ><center><img src="image/result/spp64_rough1.jpg"  >SPP = 64, roughness = 1</center></td>
+        <td ><center><img src="image/result/spp64_rough0.jpg" >roughness=0 </center></td>
+        <td ><center><img src="image/result/spp64_rough0.25.jpg"  >roughness=0.25</center></td>
+        <td ><center><img src="image/result/spp64_rough0.5.jpg"  >roughness=0.5</center></td>
+        <td ><center><img src="image/result/spp64_rough1.jpg"  >roughness=1</center></td>
     </tr>
 
