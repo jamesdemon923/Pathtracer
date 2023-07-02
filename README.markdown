@@ -70,7 +70,6 @@ End For
 $$
 {\displaystyle L_{\text{r}}(\mathbf {x} ,\omega _{\text{o}},\lambda ,t)=\int _{\Omega }f_{\text{r}}(\mathbf {x} ,\omega _{\text{i}},\omega _{\text{o}},\lambda ,t)L_{\text{i}}(\mathbf {x} ,\omega _{\text{i}},\lambda,t)(\omega _{\text{i}}\cdot \mathbf {n} )\operatorname {d} \omega _{\text{i}}}
 $$
-
 **Monte Carlo integration**:
 
 
@@ -299,7 +298,7 @@ In Vector3f Scene::castRay(const Ray &ray, int depth) const:
 
 ## Result
 
-Different SPP (sample per pixel)
+Different SPP (sample per pixel):
 
 <table>
     <tr>
@@ -311,7 +310,7 @@ Different SPP (sample per pixel)
     </tr>
 
 
-non acceleration & acceleration:
+Non acceleration & acceleration:
 
 <table>
     <tr>
@@ -334,6 +333,7 @@ non acceleration & acceleration:
         <td ><center><img src="image/result/spp128_acc_time.jpg" >SPP=128 with acc </center></td>
         <td ><center><img src="image/result/spp128_noacc_time.jpg"  >SPP=128 without acc</center></td>
     </tr>
+
 
 
 Using microfacet (SPP=64):
