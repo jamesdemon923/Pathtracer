@@ -65,16 +65,23 @@ End For
 **Rendering equation**:
 
 
+
 $$
 {\displaystyle L_{\text{r}}(\mathbf {x} ,\omega _{\text{o}},\lambda ,t)=\int _{\Omega }f_{\text{r}}(\mathbf {x} ,\omega _{\text{i}},\omega _{\text{o}},\lambda ,t)L_{\text{i}}(\mathbf {x} ,\omega _{\text{i}},\lambda ,t)(\omega _{\text{i}}\cdot \mathbf {n} )\operatorname {d} \omega _{\text{i}}}
 $$
+
+
 **Monte Carlo integration**:
+
 
 
 $$
 ∫_{a}^{b}f(x)dx=\frac{1}{N}\sum_{i=1}^{N}\frac{f(X_{i})}{p(X_{i})}
 $$
+
+
 **Global illumination** = Direct illumination + indirect illumination
+
 
 
 $$
@@ -95,6 +102,7 @@ $$
 <img src="image\principle\Sample the light.jpg" alt="Sample the light" width="350" />
 
 The rendering equation becomes:
+
 
 
 $$
@@ -289,12 +297,13 @@ Different SPP (sample per pixel)
 
 <table>
     <tr>
-        <td ><center><img src="image\result\spp2.jpg" >SPP = 2 </center></td>
-        <td ><center><img src="image\result\spp4.jpg"  >SPP = 4</center></td>
-        <td ><center><img src="image\result\spp16.jpg"  >SPP = 16</center></td>
-        <td ><center><img src="image\result\spp64.jpg"  >SPP = 64</center></td>
-        <td ><center><img src="image\result\spp128.jpg"  >SPP = 128</center></td>
+        <td ><center><img src="image/result/spp2.jpg" >SPP = 2 </center></td>
+        <td ><center><img src="image/result/spp4.jpg"  >SPP = 4</center></td>
+        <td ><center><img src="image/result/spp16.jpg"  >SPP = 16</center></td>
+        <td ><center><img src="image/result/spp64.jpg"  >SPP = 64</center></td>
+        <td ><center><img src="image/result/spp128.jpg"  >SPP = 128</center></td>
     </tr>
+
 
 non acceleration & acceleration:
 
@@ -329,3 +338,4 @@ Using microfacet:
         <td ><center><img src="image\result\spp64_rough0.5.jpg"  >SPP = 64, roughness = 0.5</center></td>
         <td ><center><img src="image\result\spp64_rough1.jpg"  >SPP = 64, roughness = 1</center></td>
     </tr>
+
