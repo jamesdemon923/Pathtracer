@@ -16,7 +16,7 @@
 
 ## Build the BVH
 
-<center class="half">    <img src="image\principle\BVH1.png" width="350"/> <img src="image\principle\BVH2.png" width="400"/></center>
+<center class="half"> <img src="image\principle\BVH1.png" width="300"/><img src="image\principle\BVH2.png" width="350"/></center>
 
 Pseudocode:
 
@@ -65,10 +65,10 @@ End For
 **Rendering equation**:
 
 
-
 $$
 {\displaystyle L_{\text{r}}(\mathbf {x} ,\omega _{\text{o}},\lambda ,t)=\int _{\Omega }f_{\text{r}}(\mathbf {x} ,\omega _{\text{i}},\omega _{\text{o}},\lambda ,t)L_{\text{i}}(\mathbf {x} ,\omega _{\text{i}},\lambda ,t)(\omega _{\text{i}}\cdot \mathbf {n} )\operatorname {d} \omega _{\text{i}}}
 $$
+
 
 
 **Monte Carlo integration**:
@@ -99,7 +99,9 @@ $$
 
 ### Sample light source
 
-<img src="image\principle\Sample the light.jpg" alt="Sample the light" width="350" />
+<div align=center>
+    <img src="image\principle\Sample the light.jpg" alt="Sample the light" width="350" />
+</div>    
 
 The rendering equation becomes:
 
@@ -193,11 +195,15 @@ In this project,the rendering process can be accelerated by using multiple threa
 
 Microfacet BRDF:
 
-<img src="image\principle\Microfacet BRDF.jpg" alt="Microfacet BRDF" width="350" />
+<div align=center>
+    <img src="image\principle\Microfacet BRDF.jpg" alt="Microfacet BRDF" width="350" />
+</div>    
 
 We use the GGX for $G(\mathbf{i,o,h})$ and $D(\mathbf{h})$
 
-<img src="image\principle\GGX NDF.png" alt="GGX NDF" width="450" />
+<div align=center>
+    <img src="image\principle\GGX NDF.png" alt="GGX NDF" width="450" />
+</div>
 
 ```c++
 // Define the microfacet material in main.cpp
@@ -309,33 +315,34 @@ non acceleration & acceleration:
 
 <table>
     <tr>
-        <td ><center><img src="image\result\spp2_acc_time.jpg" >SPP=2 with acc </center></td>
-        <td ><center><img src="image\result\spp2_noacc_time.jpg"  >SPP=2 without acc</center></td>
+        <td ><center><img src="image/result/spp2_acc_time.jpg" >SPP=2 with acc </center></td>
+        <td ><center><img src="image/result/spp2_noacc_time.jpg"  >SPP=2 without acc</center></td>
     </tr>
     <tr>
-        <td ><center><img src="image\result\spp4_acc_time.jpg" >SPP=4 with acc </center></td>
-        <td ><center><img src="image\result\spp4_noacc_time.jpg"  >SPP=4 without acc</center></td>
+        <td ><center><img src="image/result/spp4_acc_time.jpg" >SPP=4 with acc </center></td>
+        <td ><center><img src="image/result/spp4_noacc_time.jpg"  >SPP=4 without acc</center></td>
     </tr>
     <tr>
-        <td ><center><img src="image\result\spp16_acc_time.jpg" >SPP=16 with acc </center></td>
-        <td ><center><img src="image\result\spp16_noacc_time.jpg"  >SPP=16 without acc</center></td>
+        <td ><center><img src="image/result/spp16_acc_time.jpg" >SPP=16 with acc </center></td>
+        <td ><center><img src="image/result/spp16_noacc_time.jpg"  >SPP=16 without acc</center></td>
     </tr>
         <tr>
-        <td ><center><img src="image\result\spp64_acc_time.jpg" >SPP=64 with acc </center></td>
-        <td ><center><img src="image\result\spp64_noacc_time.jpg"  >SPP=64 without acc</center></td>
+        <td ><center><img src="image/result/spp64_acc_time.jpg" >SPP=64 with acc </center></td>
+        <td ><center><img src="image/result/spp64_noacc_time.jpg"  >SPP=64 without acc</center></td>
     </tr>
         <tr>
-        <td ><center><img src="image\result\spp128_acc_time.jpg" >SPP=128 with acc </center></td>
-        <td ><center><img src="image\result\spp128_noacc_time.jpg"  >SPP=128 without acc</center></td>
+        <td ><center><img src="image/result/spp128_acc_time.jpg" >SPP=128 with acc </center></td>
+        <td ><center><img src="image/result/spp128_noacc_time.jpg"  >SPP=128 without acc</center></td>
     </tr>
+
 
 Using microfacet:
 
 <table>
     <tr>
-        <td ><center><img src="image\result\spp64_rough0.jpg" >SPP = 64, roughness = 0 </center></td>
-        <td ><center><img src="image\result\spp64_rough0.25.jpg"  >SPP = 64, roughness = 0.25</center></td>
-        <td ><center><img src="image\result\spp64_rough0.5.jpg"  >SPP = 64, roughness = 0.5</center></td>
-        <td ><center><img src="image\result\spp64_rough1.jpg"  >SPP = 64, roughness = 1</center></td>
+        <td ><center><img src="image/result/spp64_rough0.jpg" >SPP = 64, roughness = 0 </center></td>
+        <td ><center><img src="image/result/spp64_rough0.25.jpg"  >SPP = 64, roughness = 0.25</center></td>
+        <td ><center><img src="image/result/spp64_rough0.5.jpg"  >SPP = 64, roughness = 0.5</center></td>
+        <td ><center><img src="image/result/spp64_rough1.jpg"  >SPP = 64, roughness = 1</center></td>
     </tr>
 
