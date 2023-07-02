@@ -68,7 +68,7 @@ End For
 
 
 $$
-L_{\text{r}}(\mathbf {x} ,\omega _{\text{o}},\lambda ,t)=\int _{\Omega }f_{\text{r}}(\mathbf {x} ,\omega _{\text{i}},\omega _{\text{o}},\lambda ,t)L_{\text{i}}(\mathbf {x} ,\omega _{\text{i}},\lambda,t)(\omega _{\text{i}}\cdot \mathbf {n} )\operatorname {d} \omega _{\text{i}}
+L_{r}(\mathbf {x} ,\omega _{o},\lambda ,t)=\int _{\Omega }f_{r}(\mathbf {x} ,\omega _{i},\omega _{o},\lambda ,t)L_{i}(\mathbf {x} ,\omega _{i},\lambda,t)(\omega _{i}\cdot \mathbf {n} )\operatorname {d} \omega _{i}
 $$
 
 
@@ -348,4 +348,3 @@ In Vector3f Scene::castRay(const Ray &ray, int depth) const:
         <td ><center><img src="image/result/spp64_rough0.5.jpg"  >roughness=0.5</center></td>
         <td ><center><img src="image/result/spp64_rough1.jpg"  >roughness=1</center></td>
     </tr>
-
