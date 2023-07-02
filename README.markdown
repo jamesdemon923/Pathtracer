@@ -42,6 +42,8 @@ End function
 ```
 
 Use the **Surface Area Heuristic (SAH)** to solve the problem that objects are not uniformly distributed.
+
+
 $$
 C = C_{trav} + \frac {S_{A}}{S_{N}} N_{A} C_{isect}+ \frac {S_{B}}{S_{N}} N_{B} C_{isect}
 $$
@@ -61,14 +63,20 @@ End For
 ### Beginning
 
 **Rendering equation**:
+
+
 $$
 {\displaystyle L_{\text{r}}(\mathbf {x} ,\omega _{\text{o}},\lambda ,t)=\int _{\Omega }f_{\text{r}}(\mathbf {x} ,\omega _{\text{i}},\omega _{\text{o}},\lambda ,t)L_{\text{i}}(\mathbf {x} ,\omega _{\text{i}},\lambda ,t)(\omega _{\text{i}}\cdot \mathbf {n} )\operatorname {d} \omega _{\text{i}}}
 $$
 **Monte Carlo integration**:
+
+
 $$
 ∫_{a}^{b}f(x)dx=\frac{1}{N}\sum_{i=1}^{N}\frac{f(X_{i})}{p(X_{i})}
 $$
 **Global illumination** = Direct illumination + indirect illumination
+
+
 $$
 L = E + KE + K^{2}E + K^{3}E + ...
 $$
@@ -76,15 +84,19 @@ $$
 ### Russian roulette
 
 Previously, we always shoot a ray at a shading point and get the shading result $\mathbf{L_{o}}$. Suppose we manually set a probability P (0 < P < 1) With probability P, shoot a ray and return the shading result divided by P: $\mathbf{L_{o}}$ / P With probability 1-P, don’t shoot a ray and you’ll get 0. In this way, you can still expect to get $\mathbf{L_{o}}$:
+
+
 $$
 E = P * (\mathbf{L_{o}} / P) + (1 - P) * 0 = \mathbf{L_{o}}
 $$
 
 ### Sample light source
 
-<img src="image\principle\Sample the light.jpg" alt="Sample the light" style="zoom:50%;" />
+<img src="image\principle\Sample the light.jpg" alt="Sample the light" width="350" />
 
 The rendering equation becomes:
+
+
 $$
 \begin{align}
 L_{o}(x,\omega_{o}) & = \int_{\Omega^{+}} L_{i}(x,\omega_{i})f_{r}(x,\omega_{i},\omega_{o})\cos\theta d\omega_{i}\\
@@ -173,11 +185,11 @@ In this project,the rendering process can be accelerated by using multiple threa
 
 Microfacet BRDF:
 
-<img src="image\principle\Microfacet BRDF.jpg" alt="Microfacet BRDF" style="zoom:50%;" />
+<img src="image\principle\Microfacet BRDF.jpg" alt="Microfacet BRDF" width="350" />
 
 We use the GGX for $G(\mathbf{i,o,h})$ and $D(\mathbf{h})$
 
-<img src="image\principle\GGX NDF.png" alt="GGX NDF" style="zoom: 67%;" />
+<img src="image\principle\GGX NDF.png" alt="GGX NDF" width="450" />
 
 ```c++
 // Define the microfacet material in main.cpp
@@ -317,4 +329,3 @@ Using microfacet:
         <td ><center><img src="image\result\spp64_rough0.5.jpg"  >SPP = 64, roughness = 0.5</center></td>
         <td ><center><img src="image\result\spp64_rough1.jpg"  >SPP = 64, roughness = 1</center></td>
     </tr>
-
