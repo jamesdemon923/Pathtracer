@@ -66,13 +66,9 @@ End For
 
 **Rendering equation**:
 
-
-$$
-\begin{align}
-L_{r}(\mathbf{x} ,\omega_{o},\lambda,t)=\int_{\Omega}f_{r}(\mathbf{x},\omega _{i},\omega_{o},\lambda,t)L_{i}(\mathbf{x},\omega_{i},\lambda,t)(\omega_{i} \cdot \mathbf{n})d\omega _{i}
-\end{align}
-$$
-
+<div align=center>
+    <img src="image\principle\Rendering equation.jpg" alt="Rendering equation" width="350" />
+</div>   
 
 **Monte Carlo integration**:
 
