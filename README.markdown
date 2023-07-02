@@ -68,7 +68,7 @@ End For
 
 
 $$
-L_{r}(\mathbf {x} ,\omega _{o},\lambda ,t)=\int _{\Omega }f_{r}(\mathbf {x} ,\omega _{i},\omega _{o},\lambda ,t)L_{i}(\mathbf {x} ,\omega _{i},\lambda,t)(\omega _{i}\cdot \mathbf {n} )d\omega _{i}
+L_{r}(\mathbf{x} ,\omega_{o},\lambda,t)=\int_{\Omega}f_{r}(\mathbf{x},\omega _{i},\omega_{o},\lambda,t)L_{i}(\mathbf{x},\omega_{i},\lambda,t)(\omega_{i} \cdot \mathbf{n})d\omega _{i}
 $$
 
 
