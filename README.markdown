@@ -68,7 +68,7 @@ End For
 
 
 $$
-{\displaystyle L_{\text{r}}(\mathbf {x} ,\omega _{\text{o}},\lambda ,t)=\int _{\Omega }f_{\text{r}}(\mathbf {x} ,\omega _{\text{i}},\omega _{\text{o}},\lambda ,t)L_{\text{i}}(\mathbf {x} ,\omega _{\text{i}},\lambda,t)(\omega _{\text{i}}\cdot \mathbf {n} )\operatorname {d} \omega _{\text{i}}}
+L_{\text{r}}(\mathbf {x} ,\omega _{\text{o}},\lambda ,t)=\int _{\Omega }f_{\text{r}}(\mathbf {x} ,\omega _{\text{i}},\omega _{\text{o}},\lambda ,t)L_{\text{i}}(\mathbf {x} ,\omega _{\text{i}},\lambda,t)(\omega _{\text{i}}\cdot \mathbf {n} )\operatorname {d} \omega _{\text{i}}
 $$
 
 
@@ -314,8 +314,8 @@ In Vector3f Scene::castRay(const Ray &ray, int depth) const:
 
 <table>
     <tr>
-        <th colspan="1">Non-accelerated</th>
         <th colspan="1">Accelerated</th>
+        <th colspan="1">Non-accelerated</th>
     </tr>
     <tr>
         <td ><center><img src="image/result/spp2_acc_time.jpg" >SPP=2 with acc </center></td>
