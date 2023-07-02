@@ -70,6 +70,8 @@ End For
 $$
 {\displaystyle L_{\text{r}}(\mathbf {x} ,\omega _{\text{o}},\lambda ,t)=\int _{\Omega }f_{\text{r}}(\mathbf {x} ,\omega _{\text{i}},\omega _{\text{o}},\lambda ,t)L_{\text{i}}(\mathbf {x} ,\omega _{\text{i}},\lambda,t)(\omega _{\text{i}}\cdot \mathbf {n} )\operatorname {d} \omega _{\text{i}}}
 $$
+
+
 **Monte Carlo integration**:
 
 
@@ -298,9 +300,10 @@ In Vector3f Scene::castRay(const Ray &ray, int depth) const:
 
 ## Result
 
-Different SPP (sample per pixel):
-
 <table>
+     <tr>
+        <th colspan="5">Different SPP (sample per pixel):</th>
+    </tr>
     <tr>
         <td ><center><img src="image/result/spp2.jpg" >SPP = 2 </center></td>
         <td ><center><img src="image/result/spp4.jpg"  >SPP = 4</center></td>
@@ -309,10 +312,11 @@ Different SPP (sample per pixel):
         <td ><center><img src="image/result/spp128.jpg"  >SPP = 128</center></td>
     </tr>
 
-
-Non acceleration & acceleration:
-
 <table>
+    <tr>
+        <th colspan="1">Non-accelerated</th>
+        <th colspan="1">Accelerated</th>
+    </tr>
     <tr>
         <td ><center><img src="image/result/spp2_acc_time.jpg" >SPP=2 with acc </center></td>
         <td ><center><img src="image/result/spp2_noacc_time.jpg"  >SPP=2 without acc</center></td>
@@ -334,13 +338,12 @@ Non acceleration & acceleration:
         <td ><center><img src="image/result/spp128_noacc_time.jpg"  >SPP=128 without acc</center></td>
     </tr>
 
-
-
-Using microfacet (SPP=64):
-
 <table>
     <tr>
-        <td ><center><img src="image/result/spp64_rough0.jpg" >roughness=0 </center></td>
+        <th colspan="4">Using microfacet (SPP=64):</th>
+    </tr>
+    <tr>
+        <td ><center><img src="image/result/spp64_rough0.jpg" >roughness=0</center></td>
         <td ><center><img src="image/result/spp64_rough0.25.jpg"  >roughness=0.25</center></td>
         <td ><center><img src="image/result/spp64_rough0.5.jpg"  >roughness=0.5</center></td>
         <td ><center><img src="image/result/spp64_rough1.jpg"  >roughness=1</center></td>
