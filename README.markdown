@@ -14,6 +14,11 @@
 
 * Cornell Box
 
+**Command**:
+
+* cmake ..
+* make
+
 ## Build the BVH
 
 <div align=center>
@@ -346,3 +351,4 @@ In Vector3f Scene::castRay(const Ray &ray, int depth) const:
         <td ><center><img src="image/result/spp64_rough0.5.jpg"  >roughness=0.5</center></td>
         <td ><center><img src="image/result/spp64_rough1.jpg"  >roughness=1</center></td>
     </tr>
+
