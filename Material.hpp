@@ -139,6 +139,12 @@ Vector3f Material::sample(const Vector3f &wi, const Vector3f &N){
             
             break;
         }
+        case MIRROR:
+        {
+            Vector3f localRay = reflect(wi, N);
+            return localRay;
+            break;
+        }
         case MICROFACET:
         {
             // uniform sample on the hemisphere
@@ -160,6 +166,14 @@ float Material::pdf(const Vector3f &wi, const Vector3f &wo, const Vector3f &N){
             // uniform sample probability 1 / (2 * PI)
             if (dotProduct(wo, N) > 0.0f)
                 return 0.5f / M_PI;
+            else
+                return 0.0f;
+            break;
+        }
+        case MIRROR:
+        {
+            if (dotProduct(wo, N) > 0.0f)
+                return 1.0f;
             else
                 return 0.0f;
             break;
@@ -189,6 +203,22 @@ Vector3f Material::eval(const Vector3f &wi, const Vector3f &wo, const Vector3f &
                 return Vector3f(0.0f);
             break;
         }
+        case MIRROR:
+        {
+            float cosalpha = dotProduct(N, wo);
+            if (cosalpha > 0.0f) 
+            {
+                float divisor = cosalpha;
+                if (divisor < 0.001) return 0;
+                Vector3f mirror = 1 / divisor;
+                float F;
+                fresnel(wi, N, ior, F);
+                return F * mirror;
+            }
+            else
+                return Vector3f(0.0f);
+            break;
+        }
         case MICROFACET:
         {
             // Implement the Torrance-Sparrow Model
@@ -200,7 +230,7 @@ Vector3f Material::eval(const Vector3f &wi, const Vector3f &wo, const Vector3f &
 
                 fresnel(wi, N, ior, F);
 
-                float Roughness = 0;// roughness
+                float Roughness = 0.25;// roughness
                 auto G_function = [&](const float& Roughness, const Vector3f& wi, const Vector3f& wo, const Vector3f& N)
                 {
                     float A_wi, A_wo;

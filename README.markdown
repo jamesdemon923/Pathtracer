@@ -301,6 +301,83 @@ In Vector3f Scene::castRay(const Ray &ray, int depth) const:
 (hitColor).z = (clamp(0, 1, (hitColor).z));
 ```
 
+### Perfect mirror reflection model
+
+In this model, only the coefficient of Fresnel reflection needs to be considered.
+
+The BRDF of Perfect mirror reflection model:
+
+
+$$
+f_{r}(p,\omega_{o},\omega_{i})=F_{r}(\omega_{r})\frac{\delta (\omega_{i} - \omega_{r})}{\cos \theta_{i}}
+$$
+
+
+Implementation:
+
+```c++
+Material* mirror = new Material(MIRROR, Vector3f(0.0f));
+mirror->Ks = Vector3f(0.45, 0.45, 0.45);
+mirror->Kd = Vector3f(0.3, 0.3, 0.25);
+mirror->ior = 12.85;
+
+// in sample
+case MIRROR:
+{
+    Vector3f localRay = reflect(wi, N);
+    return localRay;
+    break;
+}
+// in pdf
+case MIRROR:
+{
+    if (dotProduct(wo, N) > 0.0f)
+        return 1.0f;
+    else
+        return 0.0f;
+    break;
+}
+// in eval
+case MIRROR:
+{
+    float cosalpha = dotProduct(N, wo);
+    if (cosalpha > 0.0f) 
+    {
+        float divisor = cosalpha;
+        if (divisor < 0.001) return 0;
+        Vector3f mirror = 1 / divisor;
+        float F;
+        fresnel(wi, N, ior, F);
+        return F * mirror;
+    }
+    else
+        return Vector3f(0.0f);
+    break;
+}
+
+// also need to do importance sampling by modifying the castRay to prevent overexposure (only sample the indir light)
+case MIRROR:
+{
+    float ksi = get_random_float(); // random number
+
+    if (ksi < RussianRoulette){
+        Vector3f wi = inter.m->sample(wo, N).normalized();
+
+        Ray r(p, wi);
+        Intersection obj_to_scene = Scene::intersect(r);
+
+        // hit obj instead of light source
+        if (obj_to_scene.happened) {
+            Vector3f f_r = inter.m->eval(wo, wi, N);
+            float cos_theta = dotProduct(wi, N);
+            float pdf_hemi = inter.m->pdf(wo, wi, N);
+            indir = castRay(r, depth + 1) * f_r * cos_theta / pdf_hemi / RussianRoulette;
+        }
+    }
+	break;
+}
+```
+
 ## Result
 
 <table>
@@ -351,4 +428,10 @@ In Vector3f Scene::castRay(const Ray &ray, int depth) const:
         <td ><center><img src="image/result/spp64_rough0.5.jpg"  >roughness=0.5</center></td>
         <td ><center><img src="image/result/spp64_rough1.jpg"  >roughness=1</center></td>
     </tr>
-
+<table>
+    <tr>
+        <th colspan="1">Perfect mirror reflection model:</th>
+    </tr>
+    <tr>
+        <td ><center><img src="image/result/Perfect mirror reflection model spp128 rough0.25.jpg" >SPP=128, roughness=0.25</center></td>
+    </tr>

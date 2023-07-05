@@ -99,38 +99,67 @@ Vector3f Scene::castRay(const Ray &ray, int depth) const
     // Emit a ray: direction is ws, from light source xx to project p
     Ray light_to_obj(xx, ws);
     Intersection light_to_scene = Scene::intersect(light_to_obj);
+    
+    switch (inter.m->getType())
+    {
+        case MIRROR:
+        {
+            float ksi = get_random_float(); // random number
 
-    // dis > light_to_scene.distance means the ray is blocked in the middle
-    if (light_to_scene.happened && (light_to_scene.distance - dis > -sqrt(EPSILON))) {
-            Vector3f L_i = light_pos.emit; // intensity of light
-            Vector3f f_r = inter.m->eval(wo, -ws, N); // BRDF == Material
-            float cos_theta = dotProduct(-ws, N);
-            float cos_theta_l = dotProduct(ws, NN);
-            dir = L_i * f_r * cos_theta *cos_theta_l /dis2 / pdf_light;
-    }
+            if (ksi < RussianRoulette){
+                Vector3f wi = inter.m->sample(wo, N).normalized();
+
+                Ray r(p, wi);
+                Intersection obj_to_scene = Scene::intersect(r);
+
+                // hit obj instead of light source
+                if (obj_to_scene.happened) {
+                    Vector3f f_r = inter.m->eval(wo, wi, N);
+                    float cos_theta = dotProduct(wi, N);
+                    float pdf_hemi = inter.m->pdf(wo, wi, N);
+                    indir = castRay(r, depth + 1) * f_r * cos_theta / pdf_hemi / RussianRoulette;
+                }
+            }
+        
+            break;
+        }
+        default:
+        {
+            // dis > light_to_scene.distance means the ray is blocked in the middle
+            if (light_to_scene.happened && (light_to_scene.distance - dis > -sqrt(EPSILON))) {
+                    Vector3f L_i = light_pos.emit; // intensity of light
+                    Vector3f f_r = inter.m->eval(wo, -ws, N); // BRDF == Material
+                    float cos_theta = dotProduct(-ws, N);
+                    float cos_theta_l = dotProduct(ws, NN);
+                    dir = L_i * f_r * cos_theta *cos_theta_l /dis2 / pdf_light;
+            }
 
 
-    // Calculate the indirect light
+            // Calculate the indirect light
 
-    // Russian roulette
-    // in Scene.hpp, P_RR: RussianRoulette = 0.8
-    float ksi = get_random_float(); // random number
+            // Russian roulette
+            // in Scene.hpp, P_RR: RussianRoulette = 0.8
+            float ksi = get_random_float(); // random number
 
-    if (ksi < RussianRoulette){
-        Vector3f wi = inter.m->sample(wo, N).normalized();
+            if (ksi < RussianRoulette){
+                Vector3f wi = inter.m->sample(wo, N).normalized();
 
-        Ray r(p, wi);
-        Intersection obj_to_scene = Scene::intersect(r);
+                Ray r(p, wi);
+                Intersection obj_to_scene = Scene::intersect(r);
 
-        // hit obj instead of light source
-        if (obj_to_scene.happened && !obj_to_scene.m->hasEmission()) {
-            Vector3f f_r = inter.m->eval(wo, wi, N);
-            float cos_theta = dotProduct(wi, N);
-            float pdf_hemi = inter.m->pdf(wo, wi, N);
-            indir = castRay(r, depth + 1) * f_r * cos_theta / pdf_hemi / RussianRoulette;
+                // hit obj instead of light source
+                if (obj_to_scene.happened && !obj_to_scene.m->hasEmission()) {
+                    Vector3f f_r = inter.m->eval(wo, wi, N);
+                    float cos_theta = dotProduct(wi, N);
+                    float pdf_hemi = inter.m->pdf(wo, wi, N);
+                    indir = castRay(r, depth + 1) * f_r * cos_theta / pdf_hemi / RussianRoulette;
+                }
+            }
+
+            break;
         }
     }
-
+    
     Vector3f hitColor = dir + indir;
     hitColor.x = (clamp(0, 1, hitColor.x));
     hitColor.y = (clamp(0, 1, hitColor.y));

@@ -22,7 +22,7 @@ void Renderer::Render(const Scene& scene)
     Vector3f eye_pos(278, 273, -800);
 
     // change the spp value to change sample ammount
-    int spp = 64;
+    int spp = 128;
     int thread_num = 20; // AMD5800H, based on your own cpu
     int thread_height = scene.height / thread_num;
     // thread is a right-valued reference
